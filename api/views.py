@@ -39,7 +39,7 @@ class PublisherDocumentView(DocumentViewSet):
     
     search_fields = ('title','content')
     multi_match_search_fields = ('title','content')
-    fields_fields = {
+    filter_fields = {
         'title':'title',
         'content':'content',
     }

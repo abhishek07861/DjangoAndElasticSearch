@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
 ELASTICSEARCH_DSL = {
     'default':{
-        'hosts':'localhost:9200'
+        'hosts':'es-container:9200'
     }
 }
 
