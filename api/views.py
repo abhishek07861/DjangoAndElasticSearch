@@ -30,16 +30,19 @@ def index(request):
 
 
 class PublisherDocumentView(DocumentViewSet):
-    document = NewsDocument
-    serializer_class = NewsDocumentSerializer
+    document = StateDocument
+    serializer_class = StateDocumentSerializer
     filter_backends = [
         FilteringFilterBackend,
         CompoundSearchFilterBackend,
     ]
     
-    search_fields = ('title','content')
-    multi_match_search_fields = ('title','content')
+    search_fields = ('city','growth','latitude','longitude','state')
+    multi_match_search_fields = ('city','growth','latitude','longitude','state')
     filter_fields = {
-        'title':'title',
-        'content':'content',
+        'city':'city',
+        'growth':'growth',
+        'latitude':'latitude',
+        'longitude':'longitude',
+        'state':'state'
     }
