@@ -1,0 +1,105 @@
+{% extends 'frontendapp/base.html' %}
+{% block content %}
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<div class="jumbotron d-grid gap-3">
+    <div class="container mx-auto" style="margin-top: 100px;">
+
+        <div class="input-group rounded">
+            <input id="searchBar" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                aria-describedby="search-addon" />
+            <button class="input-group-text border-0" id="search-addon">
+                Search
+                <i class="fas fa-search"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div id="search-results-container">
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade show" id="exampleModalLong" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Search Result</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                onclick="closeModal()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul id="searchResult" class="list-group d-grid gap-3">
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-grid gap-3">
+    <ul class="list-group d-grid gap-3">
+        {% for city in list_of_cities %}
+        <li class="list-group-item">
+            <div class="card w-auto p-3 d-flex flex-row bd-highlight mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{city.city}} </h5>
+                    <h6 class="card-title">{{city.state}} </h6>
+                    <p class="card-text"> Population: {{city.population}} </p>
+
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+
+
+<script>
+    function closeModal() {
+        console.log("close CLicked")
+        searchModal = document.getElementById("exampleModalLong")
+        searchModal.style.display = 'None'
+
+
+    }
+    searchBar = document.getElementById("searchBar")
+    searchResult = document.getElementById("searchResult")
+    searchBtn = document.getElementById("search-addon")
+    searchModal = document.getElementById("exampleModalLong")
+    searchBtn.addEventListener("click", function (e) {
+
+        url = window.location.href
+        url = `${url}search/?search=${searchBar.value}`
+        console.log(url)
+        searchModal.style.display = 'block'
+        fetch(url).then(function (response) {
+            console.log('success!', response);
+            if (response.status = 200){
+                
+            }
+        }).catch(function (err) {
+            // There was an error
+            console.warn('Something went wrong.', err);
+        });
+
+        inputHTMl = `<li class="list-group-item"><div class="card w-auto p-3 d-flex flex-row bd-highlight mb-3">\
+                <div class="card-body">\
+                    <h5 class="card-title">${searchBar.value} </h5>\
+                    <h6 class="card-title"> </h6>\
+                    <p class="card-text"> Population:  </p>\
+                </div>
+            </div>
+        </li>`
+        var doc = new DOMParser().parseFromString(inputHTMl, "text/xml");
+        searchResult.appendChild(doc.firstChild)
+
+    });
+</script>
+{% endblock %}
