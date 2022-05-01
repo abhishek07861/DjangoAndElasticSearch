@@ -68,5 +68,12 @@ class StateDocument(Document):
             }
         }
     )
+    population = fields.TextField(
+        fields = {
+            'raw':{
+                'type':'keyword',
+            }
+        }
+    )
     class Django(object):
         model = SateCity

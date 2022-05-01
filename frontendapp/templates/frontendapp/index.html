@@ -76,29 +76,34 @@
     searchBtn.addEventListener("click", function (e) {
 
         url = window.location.href
-        url = `${url}search/?search=${searchBar.value}`
+        url = `${url}api/search/?search=${searchBar.value}`
         console.log(url)
         searchModal.style.display = 'block'
-        fetch(url).then(function (response) {
+        fetch(url).then(async function (response) {
             console.log('success!', response);
-            if (response.status = 200){
-                
+            if (response.status = 200) {
+                data = await response.json()
+                data.forEach(city => {
+                    inputHTMl = `<li class="list-group-item"><div class="card w-auto p-3 d-flex flex-row bd-highlight mb-3">\
+                                    <div class="card-body">\
+                                <h5 class="card-title">${city.city} </h5>\
+                                <h6 class="card-title"> ${city.state}</h6>\
+                                <p class="card-text"> Population:${city.population}  </p>\
+                                    </div>
+                                </div>
+                            </li>`
+                    var doc = new DOMParser().parseFromString(inputHTMl, "text/xml");
+                    searchResult.appendChild(doc.firstChild)
+
+                });
+
             }
         }).catch(function (err) {
             // There was an error
             console.warn('Something went wrong.', err);
         });
 
-        inputHTMl = `<li class="list-group-item"><div class="card w-auto p-3 d-flex flex-row bd-highlight mb-3">\
-                <div class="card-body">\
-                    <h5 class="card-title">${searchBar.value} </h5>\
-                    <h6 class="card-title"> </h6>\
-                    <p class="card-text"> Population:  </p>\
-                </div>
-            </div>
-        </li>`
-        var doc = new DOMParser().parseFromString(inputHTMl, "text/xml");
-        searchResult.appendChild(doc.firstChild)
+
 
     });
 </script>

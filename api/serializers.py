@@ -20,7 +20,7 @@ class StateDocumentSerializer(DocumentSerializer):
     class Meta:
         model = SateCity
         document = StateDocument
-        fields = ('city','growth','latitude','longitude','state')
+        fields = ('city','growth','latitude','longitude','state','population')
         
         def get_location(self,obj):
             try:
