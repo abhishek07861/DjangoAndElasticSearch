@@ -14,3 +14,16 @@ class NewsDocumentSerializer(DocumentSerializer):
                 return obj.location.to_dict()
             except:
                 return {}
+            
+            
+class StateDocumentSerializer(DocumentSerializer):
+    class Meta:
+        model = SateCity
+        document = StateDocument
+        fields = ('city','growth','latitude','longitude','state')
+        
+        def get_location(self,obj):
+            try:
+                return obj.location.to_dict()
+            except:
+                return {}
