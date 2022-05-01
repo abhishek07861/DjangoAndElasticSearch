@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'frontendapp',
     'rest_framework',
     'drf_yasg',
     'api',
@@ -44,11 +45,13 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl_drf',
 ]
 
+
 ELASTICSEARCH_DSL = {
     'default':{
         'hosts':'es-container:9200'
     }
 }
+
 
 
 MIDDLEWARE = [
@@ -62,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TestProject.urls'
-
+TEMPLATE_DIRS = [ "frontendapp/templates" ]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
