@@ -90,7 +90,7 @@ ipython_config.py
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
 #Pipfile.lock
-
+# https://www.obytes.com/blog/building-a-full-text-search-app-using-django-docker-and-elasticsearch
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
@@ -124,7 +124,8 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
+.db.json
+.output.json
 # Pyre type checker
 .pyre/
 data
