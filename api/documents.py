@@ -36,7 +36,7 @@ class StateDocument(Document):
     city = fields.TextField(
         fields = {
             'raw':{
-                'type':'keyword',
+                'type':'text',
             }
         }
     )

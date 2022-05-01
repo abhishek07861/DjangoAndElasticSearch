@@ -37,12 +37,13 @@ class PublisherDocumentView(DocumentViewSet):
         CompoundSearchFilterBackend,
     ]
     
-    search_fields = ('city','growth','latitude','longitude','state')
-    multi_match_search_fields = ('city','growth','latitude','longitude','state')
+    search_fields = ('city','growth','latitude','longitude','state','population')
+    multi_match_search_fields = ('city','growth','latitude','longitude','state','population')
     filter_fields = {
         'city':'city',
         'growth':'growth',
         'latitude':'latitude',
         'longitude':'longitude',
-        'state':'state'
+        'state':'state',
+        'population':'population'
     }
