@@ -79,6 +79,7 @@
         url = `${url}api/search/?search=${searchBar.value}`
         console.log(url)
         searchModal.style.display = 'block'
+        searchResult.innerHTML = '';
         fetch(url).then(async function (response) {
             console.log('success!', response);
             if (response.status = 200) {
